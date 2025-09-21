@@ -16,6 +16,9 @@ struct Vec2i {
     int y;
 };
 
+Vec2f operator+(Vec2f v1, Vec2f v2);
+Vec2i operator+(Vec2i v1, Vec2i v2);
+
 typedef Vec2f position;
 typedef std::function<void()> callback;
 

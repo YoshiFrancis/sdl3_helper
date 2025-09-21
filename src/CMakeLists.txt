@@ -5,7 +5,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 find_package(SDL3)
 
-add_library(sdl3_helper STATIC Transform.cpp)
+add_library(sdl3_helper STATIC Transform.cpp Texture.cpp)
 
 target_link_libraries(sdl3_helper PUBLIC sdl::sdl SDL3_image::SDL3_image)
 

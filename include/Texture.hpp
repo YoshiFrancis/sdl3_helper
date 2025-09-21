@@ -18,17 +18,21 @@ private:
   Transform transform;
   int width;
   int height;
-  std::unique_ptr<SDL_Texture> texture;
+  SDL_Texture *texture;
+  std::shared_ptr<SDL_Renderer> renderer = nullptr;
 
 public:
-  Texture(std::string_view file_path, Transform _transform);
+  Texture(std::string_view file_path, Transform _transform,
+          std::shared_ptr<SDL_Renderer> _renderer);
   ~Texture();
 
-  void render();
+  void render(position parent_pos);
+  void destroy();
 
   position get_position();
-  Transform &get_transform_ref();
-  const Transform &get_transform_const_ref();
+
+private:
+  void load_texture(std::string_view file_path);
 };
 
 }; // namespace sdl3_helper

@@ -1,6 +1,7 @@
 #ifndef SDL3HELPER_BUTTON_HPP
 #define SDL3HELPER_BUTTON_HPP
 
+#include "AudioPlayer.hpp"
 #include "IAnimatable.hpp"
 #include "IClickable.hpp"
 #include "Texture.hpp"
@@ -19,7 +20,7 @@ private:
   Transform transform;
   callback onClick;
   std::unique_ptr<Texture> texture = nullptr;
-  std::unique_ptr<Audio> sound = nullptr;
+  std::unique_ptr<AudioPlayer> sound = nullptr;
 
   float width = 0;
   float height = 0;

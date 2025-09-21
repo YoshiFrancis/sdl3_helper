@@ -22,6 +22,10 @@ private:
 
 public:
   Texture(std::string_view file_path, Transform _transform);
+  ~Texture();
+
+  void render();
+
   position get_position();
   Transform &get_transform_ref();
   const Transform &get_transform_const_ref();

@@ -1,6 +1,8 @@
 #ifndef SDL3HELPER_STRUCTS_HPP
 #define SDL3HELPER_STRUCTS_HPP
 
+#include <SDL3/SDL.h>
+
 #include <tuple>
 #include <functional>
 
@@ -21,6 +23,9 @@ Vec2i operator+(Vec2i v1, Vec2i v2);
 
 typedef Vec2f position;
 typedef std::function<void()> callback;
+
+typedef std::shared_ptr<SDL_Window> window_ptr;
+typedef std::shared_ptr<SDL_Renderer> renderer_ptr;
 
 }
 

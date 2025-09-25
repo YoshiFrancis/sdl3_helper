@@ -7,10 +7,6 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 find_package(SDL3 REQUIRED)
 
-add_subdirectory(SDL3_image)
+add_subdirectory(SDL_image)
 
 add_subdirectory(src)
-
-add_executable(Test test_main.cpp)
-
-target_link_libraries(Test PRIVATE sdl3_helper)

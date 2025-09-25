@@ -12,8 +12,8 @@ public:
   Vec2f scale;
   float angle;
 
-  Transform(position _pos = {0, 0}, Vec2f _scale = {0, 0}, float _angle = 0);
-  Transform(float x = 0, float y = 0, Vec2f _scale = {0, 0}, float _angle = 0);
+  Transform(position _pos = {0, 0}, Vec2f _scale = {1, 1}, float _angle = 0);
+  Transform(float x, float y, Vec2f _scale = {1, 1}, float _angle = 0);
 
   void transform(float x, float y);
   void transform(Vec2f offset);

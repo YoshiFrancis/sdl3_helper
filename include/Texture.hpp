@@ -21,10 +21,14 @@ private:
   SDL_Texture *texture;
   std::shared_ptr<SDL_Renderer> renderer = nullptr;
 
+  bool loaded = false;
+
 public:
-  Texture(std::string_view file_path, Transform _transform,
-          std::shared_ptr<SDL_Renderer> _renderer);
+  Texture(std::string_view file_path, std::shared_ptr<SDL_Renderer> _renderer,
+          Transform _transform = {});
   ~Texture();
+
+  inline bool is_loaded() const { return loaded; };
 
   void render(position parent_pos);
   void destroy();

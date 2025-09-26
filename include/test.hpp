@@ -1,10 +1,9 @@
 #ifndef SDL3HELPER_TEST_HPP
 #define SDL3HELPER_TEST_HPP
 
+#include <string_view>
 
-bool init();
-bool loadMedia();
-void close_sdl();
-int lol();
+void renderTexture(std::string_view file_path);
+bool init(int w, int h);
 
 #endif

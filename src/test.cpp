@@ -9,7 +9,7 @@ using namespace sdl3_helper;
 renderer_ptr renderer{nullptr};
 window_ptr window{nullptr};
 
-std::optional<std::tuple<window_ptr, renderer_ptr>>
+static std::optional<std::tuple<window_ptr, renderer_ptr>>
 initWindowAndRenderer(int w, int h) {
   // both window and renderer used for initialization of shared ptr
   SDL_Window *lwindow{nullptr};     // local window
@@ -80,7 +80,7 @@ void renderTexture(std::string_view file_path) {
         quit = true;
       }
     }
-    SDL_SetRenderDrawColor(renderer.get(), 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_SetRenderDrawColor(renderer.get(), 0xFF, 0x00, 0xFF, 0xFF);
     SDL_RenderClear(renderer.get());
     texture.render({0, 0});
     SDL_RenderPresent(renderer.get());

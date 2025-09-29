@@ -14,7 +14,7 @@ namespace sdl3_helper {
 
 class Texture {
 
-private:
+protected:
   Transform transform;
   int width;
   int height;
@@ -24,11 +24,10 @@ private:
 public:
   Texture(std::string_view file_path, std::shared_ptr<SDL_Renderer> _renderer,
           Transform _transform = {});
-  ~Texture();
+  virtual ~Texture();
 
   inline bool is_loaded() const { return texture != nullptr; };
-
-  void render(position parent_pos);
+  virtual void render(position parent_pos);
   void destroy();
 
   position get_position();

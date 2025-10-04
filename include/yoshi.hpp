@@ -3,7 +3,9 @@
 
 #include <string_view>
 
-void renderTexture(std::string_view file_path);
+namespace yoshi {
+void load_texture(std::string_view file_path);
 bool init(int w, int h);
+} // namespace yoshi
 
 #endif

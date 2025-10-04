@@ -1,3 +1,4 @@
+#include "SharedCtx.hpp"
 #include "Texture.hpp"
 #include "structs.hpp"
 
@@ -8,6 +9,7 @@ using namespace sdl3_helper;
 
 renderer_ptr renderer{nullptr};
 window_ptr window{nullptr};
+SharedCtx ctx;
 
 static std::optional<std::tuple<window_ptr, renderer_ptr>>
 initWindowAndRenderer(int w, int h) {
@@ -35,37 +37,16 @@ initWindowAndRenderer(int w, int h) {
 }
 
 bool init(int w, int h) {
-  bool success{true};
-  if (SDL_Init(SDL_INIT_VIDEO) == false) {
-    SDL_LogError(SDL_LOG_CATEGORY_APPLICATION,
-                 "failed to initialize SDL (test.cpp:init()). SDL error: %s\n",
-                 SDL_GetError());
-    success = false;
+  auto ctx_opt = create_shared_ctx(w, h);
+  if (ctx_opt.has_value()) {
+    ctx = ctx_opt.value();
+    return true;
   }
-  if (success) {
-    auto window_and_renderer_opt = initWindowAndRenderer(w, h);
-    if (window_and_renderer_opt == std::nullopt) {
-      SDL_LogError(SDL_LOG_CATEGORY_APPLICATION,
-                   "failed to create window or renderer (test.cpp:init()). SDL "
-                   "error: %s\n",
-                   SDL_GetError());
-      success = false;
-    } else {
-      std::tie(window, renderer) = window_and_renderer_opt.value();
-    }
-  }
-  return success;
+  return false;
 }
 
 void renderTexture(std::string_view file_path) {
-  constexpr int width = 800;
-  constexpr int height = 400;
-  if (!init(width, height)) {
-    SDL_Log("failed to initialize SDL in test.cpp:renderTexture");
-    SDL_Quit();
-    return;
-  }
-  Texture texture(file_path, renderer);
+  Texture texture(file_path);
   if (!texture.is_loaded()) {
     SDL_Log("failed to load texture");
     return;
